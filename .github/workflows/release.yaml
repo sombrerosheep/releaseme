@@ -16,6 +16,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
@@ -29,7 +30,7 @@ jobs:
         with:
           pushTag: true
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         if: "${{ steps.semverutil.outputs.changed == 'true' }}"
@@ -38,4 +39,4 @@ jobs:
           version: "2.7.0"
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
