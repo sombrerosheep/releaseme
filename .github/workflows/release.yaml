@@ -29,7 +29,7 @@ jobs:
         with:
           pushTag: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASER_TOKEN }}
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         if: "${{ steps.semverutil.outputs.changed == 'true' }}"
@@ -38,4 +38,4 @@ jobs:
           version: "2.7.0"
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASER_TOKEN }}
