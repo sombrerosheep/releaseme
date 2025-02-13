@@ -24,10 +24,11 @@ jobs:
         with:
           go-version: "1.23"
       - name: SVU
+        id: semverutil
         uses: charlesthomas/github-action-svu@v1.0.6+2.2.0
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
-        if: steps.SVU.outputs.changed
+        if: steps.semverutil.outputs.changed == "true"
         with:
           distribution: goreleaser
           version: "2.7.0"
