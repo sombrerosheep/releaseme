@@ -30,7 +30,7 @@ jobs:
         run: echo '${{ toJSON(steps.semverutil.outputs) }}'
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
-        if: steps.semverutil.outputs.changed == 'true'
+        if: "${{ steps.semverutil.outputs.changed == 'true' }}"
         with:
           distribution: goreleaser
           version: "2.7.0"
