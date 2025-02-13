@@ -28,6 +28,7 @@ jobs:
         id: semverutil
         uses: charlesthomas/github-action-svu@v1.0.6+2.2.0
         with:
+          unshallow: true
           pushTag: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
